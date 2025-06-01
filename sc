@@ -13,6 +13,7 @@ mouse.Button1Down:Connect(function()
 end)
 workspace[game.Players.LocalPlayer.Name].Archivable = true
 local clone = workspace[game.Players.LocalPlayer.Name]:Clone()
+clone.Humanoid.AutoRotate = false
 for i,v in pairs(clone:GetDescendants()) do
 	if v:IsA("BasePart") then
 		v.Transparency = 0.6
@@ -28,8 +29,10 @@ spawn(function()
 		pcall(function()
 			if target ~= "" then
 				clone.HumanoidRootPart.CFrame = game.Players[target].Character.HumanoidRootPart.CFrame - game.Players[target].Character.HumanoidRootPart.CFrame.LookVector*1.35
+				clone.HumanoidRootPart.Anchored = true
 			else
 				clone.HumanoidRootPart.CFrame = CFrame.new(clone.HumanoidRootPart.CFrame.Position, clone.HumanoidRootPart.CFrame.Position + Vector3.new(workspace.CurrentCamera.CFrame.LookVector.X,0,workspace.CurrentCamera.CFrame.LookVector.Z))
+				clone.HumanoidRootPart.Anchored = false
 			end
 		end)
 	end
